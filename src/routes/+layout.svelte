@@ -5,30 +5,32 @@
   import { enhance } from '$app/forms';
   import type { PageServerData } from './$types';
 
-  // let { data }: { data: PageServerData } = $props();
+  import { page } from '$app/stores';
+  import { derived } from 'svelte/store';
+
+  const menuHref = derived(page, ($page) => 
+    $page.url.pathname === '/menu' ? '/' : '/menu'
+  );  // let { data }: { data: PageServerData } = $props();
+
+  const menuIcon = derived(page, ($page) => 
+    $page.url.pathname === '/menu' ? '/home.png' : '/pp.png'
+  );
 </script>
 
 
-<div class="flex min-h-screen w-full flex-col  bg-gray-100">
-  <div class="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r sm:flex" >
- 
-      <a href="/menu" class="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 md:h-8 md:w-8" >
-        <img src="/favicon.png">
-      </a>
 
+<div class="flex min-h-screen w-full flex-col bg-gray-100">
+  <div class="fixed bottom-4 left-4 z-10">
+    <a href={$menuHref} class="group flex h-9 w-9 shrink-0 items-center justify-center">
+      <img src={$menuIcon} alt="Menu Icon">
+    </a>
   </div>
-
   <div class="flex flex-col sm:gap-4 sm:py-2 sm:pl-14">
-<!--     <header class="sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-
-    </header> -->
-
     <main>    
       {@render children()}
     </main>
   </div>
 </div>
-
 
 <!-- <script>
 	import '../app.css';

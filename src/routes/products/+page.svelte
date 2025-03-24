@@ -23,7 +23,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {#each data.items as i}
 
-      <a href='#' class="shadow max-w-sm rounded-lg shadow-lg bg-white hover:bg-yellow-50">
+      <a href={`/products/${i.id}`} class="shadow max-w-sm rounded-lg shadow-lg bg-white hover:bg-yellow-50">
         <img class="rounded-t-lg" src={i.photo} alt={i.name} />
         <div class="p-5">
             <h5 class="mb-2 text-2xl font-bold tracking-tight">{ i.name }</h5>

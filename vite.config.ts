@@ -8,12 +8,16 @@ export default defineConfig({
 	optimizeDeps: {
     	exclude: ["@node-rs/argon2", "@node-rs/bcrypt"]
   	},
+  	build: {
+	    rollupOptions: {
+	      external: ['@node-rs/argon2-wasm32-wasi']
+	    }
+	 },
 	test: {
 		workspace: [
 			{
 				extends: './vite.config.ts',
 				plugins: [svelteTesting()],
-
 				test: {
 					name: 'client',
 					environment: 'jsdom',
@@ -25,7 +29,6 @@ export default defineConfig({
 			},
 			{
 				extends: './vite.config.ts',
-
 				test: {
 					name: 'server',
 					environment: 'node',
@@ -36,3 +39,14 @@ export default defineConfig({
 		]
 	}
 });
+
+
+
+// import { sveltekit } from '@sveltejs/kit/vite';
+// import { defineConfig } from 'vite';
+
+// export default defineConfig({
+//   plugins: [sveltekit()],
+
+//   }
+// });

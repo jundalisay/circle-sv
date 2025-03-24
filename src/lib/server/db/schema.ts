@@ -17,7 +17,9 @@ export const user = sqliteTable('user', {
   pin: integer('pin'),
   phone: text('phone'),
   email: text('email'),
-  passwordHash: text('password_hash').notNull()
+  passwordHash: text('password_hash').notNull(),
+  date_created: integer('date_created', { mode: 'timestamp' }) 
+  // date_created: text("date_created").default(sql`CURRENT_TIMESTAMP`)
 });
 
 
@@ -27,13 +29,17 @@ export const session = sqliteTable('session', {
     .notNull()
     .references(() => user.id),
   expiresAt: integer('expires_at', { mode: 'timestamp' }).notNull()
+  // date_created: integer('date_created', { mode: 'timestamp' }) 
+  // ,
+  // date_created: text("date_created").default(sql`CURRENT_TIMESTAMP`)
 });
 
 export const posts = sqliteTable('posts', {
   id: text('id').primaryKey(),
   content: text('content').notNull(),
   user_id: text('user_id').references(() => user.id).notNull(),
-  date_created: integer('date_created', { mode: 'timestamp' }).notNull()
+  date_created: integer('date_created', { mode: 'timestamp' }) 
+  // date_created: text("date_created").default(sql`CURRENT_TIMESTAMP`)
 });
 
 
@@ -47,7 +53,9 @@ export const products = sqliteTable('products', {
   photo3: text('photo3'),     
   description: text('description'),
   short_description: text('short_description'),
-  user_id: text('user_id').references(() => user.id).notNull()
+  user_id: text('user_id').references(() => user.id).notNull(),
+  date_created: integer('date_created', { mode: 'timestamp' }) 
+  // date_created: text("date_created").default(sql`CURRENT_TIMESTAMP`)
 });
 
 
@@ -61,7 +69,9 @@ export const services = sqliteTable('services', {
   photo3: text('photo3'),     
   description: text('description'),
   short_description: text('short_description'),
-  user_id: text('user_id').references(() => user.id).notNull()
+  user_id: text('user_id').references(() => user.id).notNull(),
+  date_created: integer('date_created', { mode: 'timestamp' }) 
+  // date_created: text("date_created").default(sql`CURRENT_TIMESTAMP`)
 });
 
 
@@ -82,7 +92,8 @@ export const transactions = sqliteTable('transactions', {
   date_cancelled: integer('date_cancelled', { mode: 'timestamp' }),
   date_transferred: integer('date_transferred', { mode: 'timestamp' }),
   date_modified: integer('date_modified', { mode: 'timestamp' }),
-  date_created: integer('date_created', { mode: 'timestamp' }).notNull()
+    date_created: integer('date_created', { mode: 'timestamp' })
+//   date_created: text("date_created").default(sql`CURRENT_TIMESTAMP`)
 });
 
 

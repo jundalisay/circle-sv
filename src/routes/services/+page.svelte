@@ -3,7 +3,7 @@
   
   let items;
 
-  const { data } = $props(); 
+  const { data } = $props();
 
   console.log('pages: ', data.items);
 </script>
